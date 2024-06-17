@@ -1,0 +1,85 @@
+.header {
+
+  height: 95vh;
+  background-image:linear-gradient(to right bottom,rgba($color-primary-light, 0.8),
+  rgba($color-primary-dark, 0.8)), 
+  url(../img/hero-small.jpg);
+  background-size: cover;
+ background-position: top;
+ position: relative;
+ 
+ -webkit-clip-path: polygon(0 0,100% 0, 100% 75vh,0 100%);
+ clip-path: polygon(0 0,100% 0, 100% 75vh,0 100%);
+
+ @media (min-resolution: 192dpi) and (min-width:37.5em), (min-width:125em) {
+  //192 dots per inch == bez it is the resolution of apple retina screen when resolution will be highter than 192dpi then this will execute and second condition we applied if width is more than 600px then only this high resolution image will be applied bez for phones we dont need it.
+  //convert to em ==> 600/16=37.5em
+
+  background-image:linear-gradient(to right bottom,rgba($color-secondary-light, 0.8),
+  rgba($color-secondary-dark, 0.8)), 
+  url(../img/hero.jpg);
+
+ }
+
+
+ @include respond(phone){
+
+  -webkit-clip-path: polygon(0 0,100% 0, 100% 85vh,0 100%);
+  clip-path: polygon(0 0,100% 0, 100%   ,0 100%);
+ }
+
+
+ &_log-box {
+    position: absolute;
+    top: 4rem;
+    left: 4rem;
+
+
+   
+ }
+
+&_logo{
+    height: 3.5rem;
+
+    @include respond(tab-port){
+      margin-left: 1.5rem;
+      margin-top: 3.5rem ;
+     }
+    }
+
+
+
+    &_text-box {
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        text-align: center ;
+        }
+ }
+ 
+//  .header_logo-box{
+//  position: absolute;
+//  top: 4rem;
+//  left: 4rem;
+//  }
+ 
+//  .header_logo{
+//  height: 3.5rem;
+//  }
+ 
+//  /* if we want animation on logo when we hover on it we can directly write animation name moveInRight and use it */
+ 
+//  /* .logo:hover{
+//  animation: moveInRight 1s ease-out;
+//  } */
+ 
+//  .header_text-box{
+//  position: absolute;
+//  top: 40%;
+//  left: 50%;
+//  transform: translate(-50%,-50%);
+//  text-align: center;
+//  }
+
+//the header which is same in all css will be replaced by & and written as nested in header

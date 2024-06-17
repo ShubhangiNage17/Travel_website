@@ -1,0 +1,71 @@
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+    }
+
+
+html{
+    /* font-size: 10px; */
+    font-size: 62.5%;   //1rem =10px;  10px/16px=62.5% (16 px is default font size of browser)
+
+    //here we set default font size  which transalte to rem which defines the entire size of our layout
+
+//   @include  respond-phone{
+
+//         font-size: 50%;
+//     }
+    // @include respond(phone){
+
+    //     font-size: 50%; 
+    // }
+
+    //if our screen size is 500px then both media queris will work bez font size is 50% for both so write the one who is having 900px
+
+   
+    @include respond(tab-land){    //width<1200px
+
+        font-size: 56.25% ;    //1rem=9px, 9/16=56.25%
+    }
+
+    @include respond(tab-port){   //width<900px
+
+        font-size:50%;  //1rem=8px, 8/16=50%
+    }
+     
+     @include respond(phone) {
+
+           font-size: 30% ;      // 1rem=4.8 px 4.8/16
+   }
+
+    @include respond(big-desktop){
+
+        font-size: 75%;  //1rem=12px, 12/16= 75%;
+    }
+
+    
+}
+
+
+//  /* 
+//  its not good practice to set html ie root font size to 10px bez it will not except browser default font size bez og it so insted of that we can set it in to percentage */
+//  /* 1rem=10px  here we set our root font size to  px so other will size according to it */
+//  /* if font size is 100% ie if user select 16px it will be 16 but we want 10px so 10/16=62.5%
+//  0.625*16=10px */
+//  /* rem do not suppprt internet explorer browser */
+
+
+body{
+    box-sizing: border-box;
+    padding: 3rem;
+
+    
+    @include respond(tab-port){   //width<900px
+            
+        padding: 0 ;  //1rem=8px, 8/16=50%
+    }
+     
+
+ }

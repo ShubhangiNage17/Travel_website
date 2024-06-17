@@ -1,0 +1,164 @@
+.popup {
+    height: 100vh;
+    width: 100%;
+  position: fixed;
+  top: 0;
+   right: 0;
+    background-color: rgba($color-black,0.8);
+    z-index: 9999;
+   
+   opacity: 0;
+   visibility: hidden;
+   // display: none;
+    //when we use display :none to hide element we cant use animation on that element so dont use display=none insted use opacity =0 and visibility=hidden
+ 
+    @include respond(tab-port){
+
+    z-index: 99999;
+
+ 
+         
+       }
+      
+
+    &__content {
+        @include absCenter;
+        width: 75%;
+     //   height: 50rem;
+        background-color: $color-white;
+        box-shadow: 0 2rem 4rem rgba($color-black,0.2);
+        border-radius: 3px;
+        display: table;
+        overflow: hidden;
+        opacity: 1 ;
+        transform: translate(-50%,-50%) scale(0.25);
+        transition: all 0.5s  0.2s ;
+        //this transform will not work bez we cant use two transform in one block this is one transform and another is in @include abscenter  so we will make it center as we do it in mixin transform
+
+        
+        
+    }
+
+    &__left { 
+       
+    width: 33.33333%;
+    display: table-cell;
+    //we use table-cell so that left and right side take equal space and height
+    //for that we have to set display=table on parent
+
+    @include respond(tab-port){
+
+      width: auto ;
+      display: block;
+
+      padding: 2rem 2rem;
+    }
+
+    }
+    &__right{
+
+      width: 66.66667%;
+     display: table-cell;
+     vertical-align: middle;
+     //on right side we want our content in middle
+     padding: 3rem 5rem;
+
+     @include respond(tab-port){
+
+      width: auto ;
+      display: block;
+         
+       }
+
+    }
+    &__img {
+      display: block;
+       width: 100%;
+    
+       @include respond(tab-port){
+margin-bottom: 2rem;
+           
+         }
+
+    }
+
+    &__text{
+font-size: 1.4rem;
+margin-bottom: 4rem;
+
+-moz-column-count: 2;
+-moz-column-gap: 4rem; //1rem=14px;
+-moz-column-rule: 1px solid $color-grey-light-2;
+
+
+//in mozella browser it will not work so add this -moz- prefix 
+//in real life we dont have to do it by hand use autoprefixer tool
+  
+
+column-count: 2;
+  column-gap: 4rem; //1rem=14px;
+  column-rule: 1px solid $color-grey-light-2;
+  
+  -moz-hyphens: auto;
+  -ms-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+  //it will provide hyphens at the end of incomplete letter
+
+  @include respond
+  
+  (tab-port){
+  
+    display: inline-block ;
+    -moz-column-count: 1; 
+
+
+//in mozella browser it will not work so add this -moz- prefix 
+//in real life we dont have to do it by hand use autoprefixer tool
+  
+
+column-count: 1;
+text-align: justify;
+               
+             }
+    }
+
+
+//open states of popup
+    &:target {
+        opacity: 1;
+        visibility: visible;
+   
+//target sudo class is to target when we click on button book now what will happen
+          transition: all 0.3s;
+   }
+
+   &:target &__content{
+  
+    opacity: 1;
+    transform: translate(-50%,-50%) scale(1);
+
+   }
+
+
+   &__close {
+     &:link,
+     &:visited{
+         color: $color-grey-dark;
+         position: absolute;
+         //we dont set position on parent bez the parent of this is popup__right which doesnt have a define position but popup__content has position defined so no need to define position property on parent .
+         top: 2.5rem;
+         right: 2.5rem;
+         font-size: 3rem;
+         text-decoration: none;
+         display: inline-block;
+      transition: all 0.2s;
+      line-height: 1;
+
+     }
+
+     &:hover {
+         color: $color-primary;
+     }
+   }
+}

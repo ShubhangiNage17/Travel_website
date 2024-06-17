@@ -1,0 +1,212 @@
+.navigation {
+   &__checkbox{
+display: none;
+   }
+
+   &__button {
+  background-color: $color-white;
+   height: 7rem;
+   width: 7rem;
+   position: fixed;
+   top: 6rem;
+   right:6rem;
+   border-radius: 50%;
+   z-index: 2000;
+   box-shadow: 0 1rem 3rem rgba($color-black, 0.1);
+   text-align: center;
+   cursor: pointer;
+
+   @include respond(tab-port){
+      top: 4rem;
+      right:4rem;
+
+   }
+   @include respond(phone){
+      top: 3rem;
+      right:3rem;
+
+   }
+   }
+
+   &__background {
+      height:6rem ;
+      width: 6rem;
+      border-radius: 50%;
+      position: fixed;
+      top: 6.5rem;
+      right: 6.5rem;
+      background-image: radial-gradient($color-primary-light,$color-primary-dark);
+      z-index: 1000 ;
+       transition: transform 0.8s;
+      // transform: scale(80);
+
+
+      @include respond(tab-port){
+         top: 4.5rem;
+         right:4.5rem;
+   
+      }
+
+      
+      @include respond(phone){
+         top: 3.5rem;
+         right: 3.5rem;
+   
+      }
+   }
+   &__nav {
+      height: 100vh;
+      position: fixed;
+      top: 0;
+      right: 0;
+      z-index: 1500;
+      opacity: 0;
+      width: 0;
+      transition: all 0.8s cubic-bezier(0.86, 0,0.07,1);
+
+      //search cubic-bezier and use different animation with different values
+   }
+   &__list{
+       position: absolute;
+       top: 50%;
+       left: 50%;
+      transform: translate(-50%,-50%);
+      list-style: none;
+      text-align: center;
+      width: 100%;
+   }
+   &__item{
+   margin: 1rem;
+   }
+
+   &__link {
+
+      &:link,
+      &:visited {
+         background-image: linear-gradient(120deg,
+    transparent 0%, 
+   transparent 50%, 
+         
+        $color-white 50% ); 
+ display: inline-block;
+  font-size: 3rem;
+  font-weight: 300;
+  padding: 1rem,2rem;
+  text-decoration: none;
+  color: $color-white;
+  text-decoration: none;
+  text-transform: uppercase;
+  background-size: 240%;
+  transition:all 0.4s;
+
+  span{
+     margin-right: 1rem;
+     display: inline-block;
+  }
+      }
+
+&:hover,
+&:active{
+   background-position: 100% ;
+   color: $color-primary;
+   transform:translateX(1rem) ;
+}
+   }
+
+   //FUNCTIONALITY
+
+   &__checkbox:checked ~ &__background{
+
+           transform: scale(80);
+
+   }
+
+   &__checkbox:checked ~ &__nav{
+
+     opacity: 1;
+     width: 100%;
+}
+
+
+//ICON
+&__icon {
+   position: relative;
+   margin: 3.5rem;
+   left: -13px;
+
+   @include respond(phone){
+   
+      left: -7px;
+   }
+
+   @include respond(tab-port){
+   
+      left: -11px;
+   }
+
+    &,
+    &::before,
+    &::after{
+
+      width: 3rem;
+      height: 2px;
+      background-color: $color-grey-light-3;
+      display: inline-block ;
+
+
+    }
+
+    &::before,
+    &::after{
+
+      content: "";
+      position: absolute;
+      left: 0;
+      transition: all  0.2s ;
+    }
+
+    &::before{
+      top: -0.8rem;
+     // transform-origin: right;
+     //rotate element from right point
+
+    }
+
+    &::after{
+      top:0.8rem;
+    }
+}
+
+&__button:hover &__icon::before{
+      //icon is span element of button that why we select it like that
+
+      top :-1rem;
+
+}
+&__button:hover &__icon::after{
+   
+
+   top: 1rem;
+}
+
+&__checkbox:checked + &__button &__icon{
+
+   //when we checked the ckeckbox (selct it) then its adjust child button get selected and icon get selected bez it is adjucemt child of button
+
+   background-color: transparent;
+
+   //when we click on three line it will get disappeard ie why we use transperent on them
+}
+&__checkbox:checked + &__button &__icon::before{
+   top: 0;
+     transform: rotate(135deg);
+     //two line one of bfore we move it in center and rotate it to 135deg so that it will create cross 
+}
+
+&__checkbox:checked + &__button &__icon::after{
+   top:0;
+   transform: rotate(-135deg);
+     //two line one of bfore we move it in center and rotate it to 135deg so that it will create cross 
+}
+
+}
